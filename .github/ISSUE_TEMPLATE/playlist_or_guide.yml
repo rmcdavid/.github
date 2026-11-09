@@ -1,0 +1,96 @@
+name: Playlist or guide data problem
+description: A playlist or guide (EPG) does not load, or loads with missing or wrong channels, names, groups, numbers, logos or programmes.
+title: "[Playlist/guide]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Playlists and guides differ a lot between providers, so these bugs usually need a sample to fix.
+
+        **Never paste your playlist or guide URL, your username or password, or your whole playlist.** This issue is public. The best report is one that reproduces with a free public list, such as `https://iptv-org.github.io/iptv/countries/us.m3u`. Otherwise, paste a few lines with the private parts replaced, as described below.
+
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What is wrong
+      options:
+        - The playlist does not load
+        - Channels are missing, or there are extra channels
+        - Channel names, groups or numbers are wrong
+        - The guide (EPG) does not load, or programmes are missing
+        - Programme times or text are wrong
+        - Logos are missing or wrong
+        - A channel plays the wrong stream, or does not play
+        - Something else
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source-kind
+    attributes:
+      label: Kind of source
+      options:
+        - Free public M3U list
+        - Paid provider M3U URL
+        - Xtream login
+        - Local M3U file
+    validations:
+      required: true
+
+  - type: input
+    id: public-list
+    attributes:
+      label: Public list that reproduces it
+      description: Only a free, public list that anyone can open. Never a paid provider's address. Leave this empty if you could not reproduce the problem with a public list.
+      placeholder: https://iptv-org.github.io/iptv/countries/us.m3u
+
+  - type: textarea
+    id: what-you-see
+    attributes:
+      label: What you see and what you expected
+      description: For example, the channel's name as the guide shows it next to the name you expected. Include the guide's footer or status line text; it shows host names only.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sample
+    attributes:
+      label: Sample lines
+      description: |
+        A few `#EXTINF` lines with the address line under each, or the relevant `<channel>` and `<programme>` elements of the guide. Before you paste:
+        - Replace every stream, logo and guide address with `http://example.invalid/...`.
+        - Replace usernames and passwords with letters such as `user` and `pass`.
+        - Keep everything else exactly as it was: attribute order, quotes, commas, spaces and unusual characters. Parsing bugs often depend on them.
+        - If the problem seems to come from a character in your username or password (a quote, a comma, an `@`, an unusual space), replace the letters and digits but keep that character where it was.
+      render: text
+
+  - type: input
+    id: scale
+    attributes:
+      label: Size
+      description: About how many channels the playlist has, and whether the guide file is compressed (.gz).
+      placeholder: "about 12,000 channels; guide is .xml.gz"
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: "Run: grep '\"version\"' ~/.config/omarchy/plugins/io.github.rmcdavid.iptv/manifest.json"
+      placeholder: "0.18.0"
+    validations:
+      required: true
+
+  - type: input
+    id: omarchy-version
+    attributes:
+      label: Omarchy version
+      placeholder: "4.5.0"
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: Nothing I pasted contains a real address, username or password.
+          required: true

@@ -1,0 +1,53 @@
+name: Feature request
+description: Suggest a change to how the guide, the bar or playback works.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The plugin aims to feel like part of Omarchy: keyboard first, using the theme's own look, with mpv for playback. Some decisions are already settled; [`docs/PRODUCT.md`](https://github.com/rmcdavid/omarchy-iptv/blob/dev/docs/PRODUCT.md) on the `dev` branch lists them. Check there before you ask for something it rules out.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This is not a request for channels, playlists or streams. The plugin ships no content.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you are trying to do, and what gets in the way today.
+      placeholder: When I ..., I have to ..., which ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like
+      description: How it could work. Include the keys you would press, if it matters.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you have tried instead
+      description: Workarounds, settings, mpv options or other tools.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Guide (search, list, channel wall)
+        - Bar widget
+        - Playback, picture in picture, pause and rewind
+        - Sources and playlists
+        - Guide data (EPG)
+        - Settings
+        - Somewhere else
+    validations:
+      required: true

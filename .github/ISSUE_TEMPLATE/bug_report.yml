@@ -1,0 +1,118 @@
+name: Bug report
+description: Something in the guide, the bar, playback or Sources does not work as it should.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug.
+
+        **Do not paste a playlist or guide URL, a username or password, an Xtream login, or the contents of `state.json`.** This issue is public, and paid provider addresses carry your credentials. The plugin only ever shows a host name. If you see a full address anywhere, report it privately through the [security policy](https://github.com/rmcdavid/omarchy-iptv/security/policy) instead.
+
+        If the problem is with a particular playlist or guide (missing channels, wrong names or groups, wrong programme times), use the **Playlist or guide data problem** form instead.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before you file
+      options:
+        - label: I read Troubleshooting in the [README](https://github.com/rmcdavid/omarchy-iptv#troubleshooting).
+          required: true
+        - label: I restarted the shell (`omarchy-restart-shell`) after my last plugin update.
+          required: true
+        - label: Nothing I paste below contains a URL, username or password.
+          required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, including any text in the guide's status line or in a notification. That text is safe to copy; it shows host names only.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the guide with SUPER + ALT + T
+        2. Type "news" and press Enter
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - Guide (search, list, channel wall)
+        - Bar widget
+        - Playback (the mpv window)
+        - Picture in picture
+        - Pause and rewind
+        - Sources screen or the add-playlist form
+        - Notifications
+        - Install or update
+        - Keybindings or menu entry from contrib/
+        - Somewhere else
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source-kind
+    attributes:
+      label: Kind of source
+      options:
+        - Free public M3U list (for example iptv-org)
+        - Paid provider M3U URL
+        - Xtream login
+        - Local M3U file
+        - Not related to a source
+    validations:
+      required: true
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: "Run: grep '\"version\"' ~/.config/omarchy/plugins/io.github.rmcdavid.iptv/manifest.json"
+      placeholder: "0.18.0"
+    validations:
+      required: true
+
+  - type: input
+    id: omarchy-version
+    attributes:
+      label: Omarchy version
+      placeholder: "4.5.0"
+    validations:
+      required: true
+
+  - type: input
+    id: mpv-version
+    attributes:
+      label: mpv version
+      description: "Run: mpv --version | head -n1"
+      placeholder: "mpv v0.41.0"
+
+  - type: textarea
+    id: shell-log
+    attributes:
+      label: Shell log
+      description: |
+        Run `qs log -p /usr/share/omarchy/shell --tail 100` right after the problem happens. The plugin's own lines show host names only, but other programs log to the same place, so read it before you paste and remove anything private.
+      render: shell
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Screenshots (check that no address is visible), your mpvArgs setting with any secrets removed, or other plugins and bar changes you have.
